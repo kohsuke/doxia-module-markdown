@@ -93,7 +93,7 @@
 
     <!-- Kohsuke addition to get this released -->
     <groupId>org.kohsuke</groupId>
-    <version>1.0</version>
+    <version>1.1-SNAPSHOT</version>
     <scm>
       <connection>scm:git:git@github.com/kohsuke/${project.artifactId}.git</connection>
       <developerConnection>scm:git:ssh://git@github.com/kohsuke/${project.artifactId}.git</developerConnection>
