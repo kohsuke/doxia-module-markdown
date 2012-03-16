@@ -16,6 +16,7 @@
 	</description>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <projectVersion>${parent.version}</projectVersion><!-- to make Doxia parent module happy -->
 	</properties>
 	<developers>
 		<developer>
@@ -73,6 +74,57 @@
 					</execution>
 				</executions>
 			</plugin>
+            <plugin>
+              <artifactId>maven-release-plugin</artifactId>
+              <configuration>
+                <releaseProfiles>release</releaseProfiles>
+              </configuration>
+            </plugin>
 		</plugins>
 	</build>
+
+
+    <!-- Kohsuke addition to get this released -->
+    <groupId>org.kohsuke</groupId>
+    <version>1.0-SNAPSHOT</version>
+    <scm>
+      <connection>scm:git:git@github.com/kohsuke/${project.artifactId}.git</connection>
+      <developerConnection>scm:git:ssh://git@github.com/kohsuke/${project.artifactId}.git</developerConnection>
+      <url>http://${project.artifactId}.kohsuke.org/</url>
+    </scm>
+
+    <distributionManagement>
+      <snapshotRepository>
+        <id>sonatype-nexus-snapshots</id>
+        <name>Sonatype Nexus Snapshots</name>
+        <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+      </snapshotRepository>
+      <repository>
+        <id>sonatype-nexus-staging</id>
+        <name>Nexus Release Repository</name>
+        <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+      </repository>
+    </distributionManagement>
+    <profiles> 
+      <profile> 
+        <id>release</id> 
+        <build> 
+          <plugins> 
+            <plugin> 
+              <artifactId>maven-gpg-plugin</artifactId> 
+              <executions> 
+                <execution> 
+                  <id>sign-artifacts</id> 
+                  <phase>verify</phase> 
+                  <goals> 
+                    <goal>sign</goal> 
+                  </goals> 
+                </execution> 
+              </executions> 
+            </plugin> 
+          </plugins> 
+        </build> 
+      </profile> 
+    </profiles> 
+
 </project>
